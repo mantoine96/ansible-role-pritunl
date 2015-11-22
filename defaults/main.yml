@@ -1,0 +1,5 @@
+---
+# defaults file for pritunl
+#
+
+mongo_component: "main"

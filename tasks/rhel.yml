@@ -1,0 +1,36 @@
+---
+# tasks file for pritunl
+
+    - name: Install pritunl repo
+      template: src=pritunl.repo.j2 dest=/etc/yum.repos.d/pritunl.repo
+
+    - name: Install MongoDB Repo
+      copy: src=mongodb.repo dest=/etc/yum.repos.d/mongodb-org-3.0.repo
+      when: ansible_distribution != "Fedora"
+
+    - name: Install EPEL
+      yum: name=epel-release state=present
+      when: ansible_distribution != "Fedora"
+
+    - name: Install Pritunl and dependencies
+      yum: name={{item}} state=present
+      with_items:
+      - mongodb-org
+      - openvpn
+      - pritunl
+      when: ansible_distribution != "Fedora"
+
+    - name: Install Pritunl and dependencies
+      dnf: name={{item}} state=present
+      with_items:
+      - mongodb
+      - mongodb-server
+      - openvpn
+      - pritunl
+      when: ansible_distribution == "Fedora"
+
+    - name: Start pritunl
+      service: name={{item}} state=started enabled=yes
+      with_items:
+      - pritunl
+      - mongod

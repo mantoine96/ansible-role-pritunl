@@ -1,0 +1,37 @@
+---
+# tasks file for pritunl
+    - name: Include correct vars for {{ ansible_distribution }}
+      include_vars: "{{ item }}"
+      with_first_found:
+        - "{{ ansible_distribution }}.yml"
+        - "main.yml"
+      when: ansible_distribution=="Ubuntu"
+
+    - name: Install pritunl repo
+      template: src=pritunl.list.j2 dest=/etc/apt/sources.list.d/pritunl.list
+
+    - name: Install MongoDB Repo
+      template: src=mongodb-org-3.0.list.j2 dest=/etc/apt/sources.list.d/mongodb-org-3.0.list
+
+    - name: On Debian 8, use Wheezy as the distro release
+      command: sed -i 's/jessie/wheezy/g' /etc/apt/sources.list.d/mongodb-org-3.0.list 
+      when: ansible_distribution_release == "jessie"
+
+    - name: Install keys
+      apt_key: keyserver=keyserver.ubuntu.com id={{ item }}
+      with_items:
+      - 7F0CEB10
+      - CF8E292A
+
+    - name: Install Pritunl and dependencies
+      apt: name={{item}} state=present update_cache=yes
+      with_items:
+      - mongodb-org
+      - openvpn
+      - pritunl
+
+    - name: Start pritunl
+      service: name={{item}} state=started
+      with_items:
+      - pritunl
+      - mongod

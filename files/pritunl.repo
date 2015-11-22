@@ -1,0 +1,5 @@
+[pritunl]
+name=Pritunl Repository
+baseurl=http://mirror.pritunl.com/yum/pritunl/x86_64/
+gpgcheck=0
+enabled=1

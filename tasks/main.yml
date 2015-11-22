@@ -1,0 +1,11 @@
+---
+# tasks file for pritunl
+
+  - name: Check OS - CentOS / RHEL / Fedora
+    include: rhel.yml
+    when: ansible_os_family == "RedHat"
+
+  - name: Check OS - Debian
+    include: debian.yml
+    when: ansible_os_family == "Debian"
+
