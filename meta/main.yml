@@ -2,7 +2,7 @@
 galaxy_info:
   author: Matthieu ANTOINE 
   description: 
-  company: your company (optional)
+  company:
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
   # issue_tracker_url: http://example.com/issue/tracker
@@ -31,7 +31,7 @@ galaxy_info:
   #  versions:
   #  - all
   #  - any
-  - name: Fedora
+     - name: Fedora
   #  versions:
   #  - all
   #  - 16
