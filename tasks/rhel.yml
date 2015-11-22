@@ -5,7 +5,7 @@
       template: src=pritunl.repo.j2 dest=/etc/yum.repos.d/pritunl.repo
 
     - name: Install MongoDB Repo
-      template: src=mongodb.repo dest=/etc/yum.repos.d/mongodb-org-3.0.repo
+      template: src=mongodb.repo.j2 dest=/etc/yum.repos.d/mongodb-org-3.0.repo
       when: ansible_distribution != "Fedora"
 
     - name: Install EPEL
