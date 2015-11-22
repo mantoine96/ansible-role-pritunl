@@ -1,0 +1,23 @@
+---
+# tasks file for pritunl
+
+    - name: Install pritunl repo
+      copy: src=pritunl.repo dest=/etc/yum.repos.d/pritunl.repo
+
+    - name: Install MongoDB Repo
+      copy: src=mongo-aws.repo dest=/etc/yum.repos.d/mongodb-org-3.0.repo
+      when: ansible_distribution != "Fedora"
+    
+    - name: Install Pritunl and dependencies
+      yum: name={{item}} state=present
+      with_items:
+      - mongodb
+      - mongodb-server
+      - openvpn
+      - pritunl
+
+    - name: Start pritunl
+      service: name={{item}} state=started enabled=yes
+      with_items:
+      - pritunl
+      - mongod
