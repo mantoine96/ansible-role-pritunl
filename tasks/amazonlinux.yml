@@ -7,12 +7,14 @@
     - name: Install MongoDB Repo
       copy: src=mongo-aws.repo dest=/etc/yum.repos.d/mongodb-org-3.0.repo
       when: ansible_distribution != "Fedora"
-    
+   
+    - name: Install GPG keys
+      command: gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys CF8E292A && gpg --armor --export CF8E292A > key.tmp; sudo rpm --import key.tmp; rm -f key.tmp
+
     - name: Install Pritunl and dependencies
       yum: name={{item}} state=present
       with_items:
-      - mongodb
-      - mongodb-server
+      - mongodb-org
       - openvpn
       - pritunl
 
