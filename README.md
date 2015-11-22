@@ -3,13 +3,15 @@ Pritunl VPN Role
 
 This role allows for easy installation of the VPN Server [Pritunl](https://pritunl.com).
 
+
 The installation is possible on :
-1. Ubuntu (Precise (14.04) and Trusty (12.04))
-2. Debian (Jessie (8) or Wheezy (7))
-3. CentOS (7)
-4. Fedora (22)
-5. RHEL (7)
-6. Amazon Linux (2013.03) (SOON)
+
+* Ubuntu (Precise (14.04) and Trusty (12.04))
+* Debian (Jessie (8) or Wheezy (7))
+* CentOS (7)
+* Fedora (22)
+* RHEL (7)
+* Amazon Linux (2013.03) (SOON)
 
 
 Requirements
