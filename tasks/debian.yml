@@ -31,7 +31,7 @@
       - pritunl
 
     - name: Start pritunl
-      service: name={{item}} state=started
+      service: name={{item}} state=started enabled=yes
       with_items:
       - pritunl
       - mongod
