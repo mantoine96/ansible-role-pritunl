@@ -14,7 +14,7 @@
       template: src=mongodb-org-3.0.list.j2 dest=/etc/apt/sources.list.d/mongodb-org-3.0.list
 
     - name: On Debian 8, use Wheezy as the distro release
-      command: sed -i 's/jessie/wheezy/g' /etc/apt/sources.list.d/mongodb-org-3.0.list 
+      command: sed -i 's/jessie/wheezy/g' /etc/apt/sources.list.d/mongodb-org-3.0.list
       when: ansible_distribution_release == "jessie"
 
     - name: Install keys
@@ -31,7 +31,7 @@
       - pritunl
 
     - name: Start pritunl
-      service: name={{item}} state=started
+      service: name={{item}} state=started enabled=yes
       with_items:
       - pritunl
       - mongod
